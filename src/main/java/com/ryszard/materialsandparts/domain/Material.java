@@ -1,5 +1,10 @@
 package com.ryszard.materialsandparts.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "material")
 public class Material {
 
     private Long materialId;
