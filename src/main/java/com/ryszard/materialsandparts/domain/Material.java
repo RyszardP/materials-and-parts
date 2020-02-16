@@ -1,12 +1,14 @@
 package com.ryszard.materialsandparts.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "material")
 public class Material {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="material_id")
     private Long materialId;
     private String title;
     private String vCode;
@@ -20,7 +22,6 @@ public class Material {
     private double coefficient;
 
     public Material(){
-
     }
 
     public Material(Long materialId, String title, String vCode, String type, int thickness, int length, int width,
