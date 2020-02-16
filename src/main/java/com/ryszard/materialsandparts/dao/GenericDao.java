@@ -1,16 +1,18 @@
 package com.ryszard.materialsandparts.dao;
 
+import com.ryszard.materialsandparts.exception.DaoException;
+
 import java.util.List;
 
 public interface GenericDao<T, K> {
 
-    List<T> findAll();
+    List<T> findAll()throws DaoException;
 
-    T findById(K id);
+    T findById(K id)throws DaoException;
 
-    void delete(K id);
+    boolean delete(K id)throws DaoException;
 
-    T save(T entity);
+    T save(T entity)throws DaoException;
 
-    T update(T entity);
+    T update(T entity)throws DaoException;
 }
