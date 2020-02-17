@@ -1,6 +1,7 @@
 package com.ryszard.materialsandparts.dao.factory;
 
 
+import com.ryszard.materialsandparts.dao.PlateDao;
 
 public class SQLDaoFactory extends DaoFactory {
 
@@ -8,10 +9,13 @@ public class SQLDaoFactory extends DaoFactory {
 
         private SQLDaoFactory(){}
 
-        public static SQLDaoFactory getInstance(){
+        private static SQLDaoFactory getInstance(){
             return instance;
         }
 
 
-
+    @Override
+    public PlateDao plateDao() {
+        return null;
     }
+}

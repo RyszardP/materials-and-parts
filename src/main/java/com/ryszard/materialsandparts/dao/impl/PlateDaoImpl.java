@@ -23,7 +23,7 @@ public class PlateDaoImpl implements PlateDao {
     private static final String UPDATE_PLATE_PRICE = "UPDATE plate SET price = ? WHERE plate_id = ? LIMIT  1";
     private static final String CREATE_PLATE = "INSERT INTO plate(plate_type, plate_manufacturer, plate_thickness, " +
             "plate_v_code, plate_sizes, plate_description, plate_price, plate_coefficient) " +
-            "VALUES(?, ?, ?, ?, ?, ?, ?, ?,)";
+            "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String LAST_INSERT_ID = "SELECT last_insert_id() as lastId";
 
     private static final String PLATE_ID = "plateId";
@@ -38,7 +38,7 @@ public class PlateDaoImpl implements PlateDao {
 
     private static final ConnectionPool pool = ConnectionPool.getInstance();
 
-    public PlateDaoImpl() {
+    private PlateDaoImpl() {
     }
 
     private static class SingletonHolder {
@@ -130,17 +130,32 @@ public class PlateDaoImpl implements PlateDao {
 
 
     @Override
-    public Plate save(Plate entity) {
-        return null;
-    }
-
-    @Override
-    public Plate update(Plate entity) throws DaoException {
+    public Long update(Plate entity) throws DaoException {
         try (Connection connect = pool.getConnection();
              PreparedStatement statement = connect.prepareStatement(UPDATE_PLATE_PRICE)) {
             statement.setString(1, String.valueOf(entity.getPlateId()));
             int rows = statement.executeUpdate();
-            return entity;
+            return entity.getPlateId();
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException("Exception", e);
+        }
+    }
+
+    @Override
+    public Long create(Plate entity) throws DaoException, ConnectionPoolException {
+        ConnectionPool.getInstance().init();
+        try (Connection connect = pool.getConnection();
+             PreparedStatement statement = connect.prepareStatement(CREATE_PLATE)) {
+            statement.setString(1, entity.getPlateType());
+            statement.setString(2, entity.getPlateManufacturer());
+            statement.setString(3, entity.getPlateThickness());
+            statement.setString(4, entity.getPlateVCode());
+            statement.setString(5, entity.getPlateSizes());
+            statement.setString(6, entity.getPlateDescription());
+            statement.setString(7, entity.getPlatePrice());
+            statement.setString(8, entity.getPlateCoefficient());
+            int rows = statement.executeUpdate();
+            return entity.getPlateId();
         } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException("Exception", e);
         }
