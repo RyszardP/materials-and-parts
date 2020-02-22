@@ -40,7 +40,7 @@ public class PlateDbUtil {
                 // retrieve data from result set row
                 Long plate_id = myRs.getLong("plate_id");
                 String plateType = myRs.getString("plate_type");
-                String plateManufacturer = myRs.getString("plate_manufa");
+                String plateManufacturer = myRs.getString("plate_manufacturer");
                 String plateThickness = myRs.getString("plate_thickness");
                 String plateVCode = myRs.getString("plate_v_code");
                 String plateSize = myRs.getString("plate_sizes");

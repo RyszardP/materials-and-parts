@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("PlateControllerServlet")
+@WebServlet("/PlateControllerServlet")
 public class PlateController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -47,8 +47,21 @@ public class PlateController extends HttpServlet {
                 case "LIST":
                     listPlates(request, response);
                     break;
+
+                case "ADD":
+                    addPlate(request, response);
+                    break;
+
+                case "LOAD":
+                    loadPlate(request, response);
+                    break;
+
                 case "UPDATE":
                     updatePlate(request, response);
+                    break;
+
+                case "DELETE":
+                    deletePlate(request,response);
                     break;
 
                 default:
@@ -118,7 +131,7 @@ public class PlateController extends HttpServlet {
 
         request.setAttribute("PLATE_LIST", plates);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/list-plates");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/list-plates.jsp");
         requestDispatcher.forward(request, response);
     }
 }

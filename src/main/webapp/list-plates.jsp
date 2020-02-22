@@ -1,11 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 22.02.2020
-  Time: 22:17
-  To change this template use File | Settings | File Templates.
---%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>List of plates </title>
@@ -16,7 +9,7 @@
 
 <div id="wrapper">
     <div id="header">
-        <h2>FooBar University</h2>
+        <h2>Materials</h2>
     </div>
 </div>
 
@@ -35,7 +28,7 @@
 
             <tr>
                 <th>Plate type</th>
-                <th>Plate manufacturer </th>
+                <th>Plate manufacturer</th>
                 <th>Plate thickness</th>
                 <th>Plate vendor code</th>
                 <th>Plate size</th>
@@ -48,14 +41,14 @@
 
                 <!-- set up a link for each plate -->
                 <c:url var="tempLink" value="PlateControllerServlet">
-                    <c:param name="command" value="LOAD" />
-                    <c:param name="plateId" value="${tempPlate.id}" />
+                    <c:param name="command" value="LOAD"/>
+                    <c:param name="plateId" value="${tempPlate.plateId}"/>
                 </c:url>
 
-                <!--  set up a link to delete a plate -->
+                <!-- set up a link to delete a plate -->
                 <c:url var="deleteLink" value="PlateControllerServlet">
-                    <c:param name="command" value="DELETE" />
-                    <c:param name="plateId" value="${tempPlate.id}" />
+                    <c:param name="command" value="DELETE"/>
+                    <c:param name="plateId" value="${tempPlate.plateId}"/>
                 </c:url>
 
                 <tr>
