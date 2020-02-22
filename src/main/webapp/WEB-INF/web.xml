@@ -5,6 +5,11 @@
          id="WebApp_ID" version="3.1">
     <display-name>Materials and parts </display-name>
 
+    <welcome-file-list>
+        <welcome-file>PlateControllerServlet</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
 
     <servlet>
         <servlet-name>dispatcher-servlet</servlet-name>
