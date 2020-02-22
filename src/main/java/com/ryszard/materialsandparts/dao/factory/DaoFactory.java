@@ -8,5 +8,5 @@ public abstract class DaoFactory {
         return SQLDaoFactory.getInstance();
     }
 
-public abstract PlateDao plateDao();
+public abstract PlateDao getPlateDao();
 }

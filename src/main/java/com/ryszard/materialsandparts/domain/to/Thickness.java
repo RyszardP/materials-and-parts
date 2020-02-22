@@ -1,4 +1,4 @@
-package com.ryszard.materialsandparts.domain.vo;
+package com.ryszard.materialsandparts.domain.to;
 
 public enum Thickness {
     ONE(1),

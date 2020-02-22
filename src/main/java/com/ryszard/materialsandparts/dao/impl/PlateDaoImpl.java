@@ -3,7 +3,7 @@ package com.ryszard.materialsandparts.dao.impl;
 import com.ryszard.materialsandparts.dao.PlateDao;
 import com.ryszard.materialsandparts.dao.connectionPool.ConnectionPool;
 import com.ryszard.materialsandparts.dao.connectionPool.ConnectionPoolException;
-import com.ryszard.materialsandparts.domain.vo.Plate;
+import com.ryszard.materialsandparts.domain.to.Plate;
 import com.ryszard.materialsandparts.exception.DaoException;
 
 import java.sql.Connection;
@@ -26,15 +26,15 @@ public class PlateDaoImpl implements PlateDao {
             "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String LAST_INSERT_ID = "SELECT last_insert_id() as lastId";
 
-    private static final String PLATE_ID = "plateId";
-    private static final String PLATE_TYPE = "plateType";
-    private static final String PLATE_MANUFACTURER = "plateManufacturer";
-    private static final String PLATE_THICKNESS = "plateThickness";
-    private static final String PLATE_V_CODE = "plateVCode";
-    private static final String PLATE_SIZES = "plateSizes";
-    private static final String PLATE_DESCRIPTION = "plateDescription";
-    private static final String PLATE_PRICE = "platePrice";
-    private static final String PLATE_COEFFICIENT = "plateCoefficient";
+    private static final String PLATE_ID = "plate_id";
+    private static final String PLATE_TYPE = "plate_type";
+    private static final String PLATE_MANUFACTURER = "plate_manufacturer";
+    private static final String PLATE_THICKNESS = "plate_thickness";
+    private static final String PLATE_V_CODE = "plate_v_code";
+    private static final String PLATE_SIZES = "plate_sizes";
+    private static final String PLATE_DESCRIPTION = "plate_description";
+    private static final String PLATE_PRICE = "plate_price";
+    private static final String PLATE_COEFFICIENT = "plate_coefficient";
 
     private static final ConnectionPool pool = ConnectionPool.getInstance();
 
@@ -83,6 +83,7 @@ public class PlateDaoImpl implements PlateDao {
                 plate.setPlateDescription(set.getString(PLATE_DESCRIPTION));
                 plate.setPlatePrice(set.getString(PLATE_PRICE));
                 plate.setPlateCoefficient(set.getString(PLATE_COEFFICIENT));
+                plateList.add(plate);
             }
         } catch (SQLException | ConnectionPoolException e) {
             throw new DaoException("Exception", e);
@@ -99,7 +100,8 @@ public class PlateDaoImpl implements PlateDao {
 
             if (set.next()) {
                 Plate plate = new Plate();
-                plate.setPlateId(set.getLong(PLATE_ID));
+                plate.setPlateId((long) set.getLong(PLATE_ID));
+                plate.setPlateType(set.getString(PLATE_TYPE));
                 plate.setPlateManufacturer(set.getString(PLATE_MANUFACTURER));
                 plate.setPlateThickness(set.getString(PLATE_THICKNESS));
                 plate.setPlateVCode(set.getString(PLATE_V_CODE));

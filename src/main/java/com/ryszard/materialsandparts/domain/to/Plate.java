@@ -1,4 +1,4 @@
-package com.ryszard.materialsandparts.domain.vo;
+package com.ryszard.materialsandparts.domain.to;
 
 import java.util.StringJoiner;
 
@@ -20,6 +20,18 @@ public class Plate {
     public Plate(Long plateId, String plateType, String plateManufacturer, String plateThickness, String plateVCode,
                  String plateSizes, String plateDescription, String platePrice, String plateCoefficient) {
         this.plateId = plateId;
+        this.plateType = plateType;
+        this.plateManufacturer = plateManufacturer;
+        this.plateThickness = plateThickness;
+        this.plateVCode = plateVCode;
+        this.plateSizes = plateSizes;
+        this.plateDescription = plateDescription;
+        this.platePrice = platePrice;
+        this.plateCoefficient = plateCoefficient;
+    }
+
+    public Plate(String plateType, String plateManufacturer, String plateThickness, String plateVCode,
+                 String plateSizes, String plateDescription, String platePrice, String plateCoefficient) {
         this.plateType = plateType;
         this.plateManufacturer = plateManufacturer;
         this.plateThickness = plateThickness;
