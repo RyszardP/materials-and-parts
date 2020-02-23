@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/PlateControllerServlet")
-public class PlateController extends HttpServlet {
+public class PlateControllerServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,7 +35,7 @@ public class PlateController extends HttpServlet {
         }
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         try {
             String command = request.getParameter("command");
 
@@ -73,7 +73,7 @@ public class PlateController extends HttpServlet {
         }
     }
 
-    public void deletePlate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    private void deletePlate(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String thePlate = request.getParameter("plate_id");
 
         plateDbUtil.deletePlate(thePlate);

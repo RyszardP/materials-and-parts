@@ -11,6 +11,10 @@ public class Manufacturer {
     public Manufacturer() {
     }
 
+    public Manufacturer(String manufacturerTitle) {
+        this.manufacturerTitle = manufacturerTitle;
+    }
+
     public Manufacturer(Long manufacturerId, String manufacturerTitle) {
         this.manufacturerId = manufacturerId;
         this.manufacturerTitle = manufacturerTitle;
