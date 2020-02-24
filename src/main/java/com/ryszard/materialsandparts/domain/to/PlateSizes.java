@@ -19,6 +19,11 @@ public class PlateSizes {
         this.plateWidth = plateWidth;
     }
 
+    public PlateSizes(Long plateLength, Long plateWidth) {
+        this.plateLength = plateLength;
+        this.plateWidth = plateWidth;
+    }
+
     public Long getPlateSizeId() {
         return plateSizeId;
     }

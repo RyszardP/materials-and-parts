@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/PlateControllerServlet")
@@ -75,13 +74,10 @@ public class PlateControllerServlet extends HttpServlet {
 
     private void deletePlate(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String thePlate = request.getParameter("plate_id");
-
         plateDbUtil.deletePlate(thePlate);
-
         listPlates(request, response);
 
     }
-
     private void updatePlate(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Long plateId = Long.parseLong(request.getParameter("plateId"));
         String plateType = request.getParameter("plateType");

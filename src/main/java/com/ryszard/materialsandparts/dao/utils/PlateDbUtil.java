@@ -114,7 +114,7 @@ public class PlateDbUtil {
         Connection myConnection = null;
         PreparedStatement myStatement = null;
         ResultSet myResultSet = null;
-        Long plateId;
+        long plateId;
 
         try {
             plateId = Long.parseLong(thePlateId);
@@ -124,7 +124,7 @@ public class PlateDbUtil {
 
             myStatement = myConnection.prepareStatement(sql);
             myStatement.setLong(1, plateId);
-            myStatement.executeQuery();
+            myResultSet = myStatement.executeQuery();
 
             if (myResultSet.next()) {
                 String plateType = myResultSet.getString("plate_type");
