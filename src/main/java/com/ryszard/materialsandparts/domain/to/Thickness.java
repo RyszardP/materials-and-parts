@@ -1,24 +1,56 @@
 package com.ryszard.materialsandparts.domain.to;
 
-public enum Thickness {
-    ONE(1),
-    EIGHT(8),
-    TEN(10),
-    TWELVE(12),
-    SIXTEEN(16),
-    EIGHTEEN(18),
-    NINETEEN(19),
-    TWENTY(20),
-    TWENTY_TWO(22);
+public class Thickness {
 
 
-    private int i;
+    private Long thicknessId;
+    private int size;
 
-    Thickness(int i) {
-        this.i = i;
+    public Thickness(int size) {
+        this.size = size;
     }
 
-    public int getI() {
-        return i;
+    public int getThicknessSize() {
+        return size;
+    }
+
+    Thickness() {
+    }
+
+
+
+    public Thickness(Long thicknessId, int size) {
+        this.thicknessId = thicknessId;
+        this.size = size;
+    }
+
+    public Long getThicknessId() {
+        return thicknessId;
+    }
+
+    public void setThicknessId(Long thicknessId) {
+        this.thicknessId = thicknessId;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Thickness)) return false;
+
+        Thickness thickness = (Thickness) o;
+
+        if (size != thickness.size) return false;
+        return thicknessId != null ? thicknessId.equals(thickness.thicknessId) : thickness.thicknessId == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = thicknessId != null ? thicknessId.hashCode() : 0;
+        result = 31 * result + size;
+        return result;
     }
 }

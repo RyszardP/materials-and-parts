@@ -38,7 +38,7 @@ public class PlateDbUtil {
             while (myRs.next()) {
 
                 // retrieve data from result set row
-                Long plate_id = myRs.getLong("plate_id");
+                Long plateId = myRs.getLong("plate_id");
                 String plateType = myRs.getString("plate_type");
                 String plateManufacturer = myRs.getString("plate_manufacturer");
                 String plateThickness = myRs.getString("plate_thickness");
@@ -49,7 +49,7 @@ public class PlateDbUtil {
                 String plateCoefficient = myRs.getString("plate_coefficient");
 
                 // create new  plate object
-                Plate tempPlate = new Plate(plate_id, plateType, plateManufacturer, plateThickness, plateVCode,
+                Plate tempPlate = new Plate(plateId, plateType, plateManufacturer, plateThickness, plateVCode,
                         plateSize, plateDescription, platePrice, plateCoefficient);
 
                 // add it to the list of plates
@@ -62,19 +62,19 @@ public class PlateDbUtil {
         }
     }
 
-    private void close(Connection myConn, Statement myStmt, ResultSet myRs) {
+    private void close(Connection myConnection, Statement myStatement, ResultSet myResultset) {
 
         try {
-            if (myRs != null) {
-                myRs.close();
+            if (myResultset != null) {
+                myResultset.close();
             }
 
-            if (myStmt != null) {
-                myStmt.close();
+            if (myStatement != null) {
+                myStatement.close();
             }
 
-            if (myConn != null) {
-                myConn.close();
+            if (myConnection != null) {
+                myConnection.close();
             }
         } catch (Exception exc) {
             exc.printStackTrace();
@@ -120,7 +120,7 @@ public class PlateDbUtil {
             plateId = Long.parseLong(thePlateId);
             myConnection = dataSource.getConnection();
 
-            String sql = "select * from plate where id = ?";
+            String sql = "select * from plate where plate_id = ?";
 
             myStatement = myConnection.prepareStatement(sql);
             myStatement.setLong(1, plateId);
@@ -181,7 +181,7 @@ public class PlateDbUtil {
         PreparedStatement myPreparedStatement = null;
 
         try {
-            Long plateId = Long.parseLong(thePlateId);
+            long plateId = Long.parseLong(thePlateId);
             myConnection = dataSource.getConnection();
 
             String sql = "delete from plate where plate_id = ?";

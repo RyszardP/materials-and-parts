@@ -10,6 +10,10 @@ public class PlateType {
     public PlateType() {
     }
 
+    public PlateType(String plateTypeName) {
+        this.plateTypeName = plateTypeName;
+    }
+
     public PlateType(Long plateTypeId, String plateTypeName) {
         this.plateTypeId = plateTypeId;
         this.plateTypeName = plateTypeName;

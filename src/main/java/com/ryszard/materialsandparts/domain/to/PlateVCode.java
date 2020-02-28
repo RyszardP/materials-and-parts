@@ -13,6 +13,11 @@ public class PlateVCode {
     public PlateVCode() {
     }
 
+    public PlateVCode(String plateVCodeTitle, String plateVCodeDescription) {
+        this.plateVCodeTitle = plateVCodeTitle;
+        this.plateVCodeDescription = plateVCodeDescription;
+    }
+
     public PlateVCode(Long plateVCodeId, String plateVCodeTitle, String plateVCodeDescription) {
         this.plateVCodeId = plateVCodeId;
         this.plateVCodeTitle = plateVCodeTitle;

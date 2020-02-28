@@ -19,7 +19,7 @@ public class ManufacturerControllerServlet extends HttpServlet {
 
     private ManufacturerDbUtil manufacturerDbUtil;
 
-    @Resource(name = "jdbc/web_manufacturer_tracer")
+    @Resource(name = "jdbc/materials")
     private DataSource dataSource;
 
     @Override
