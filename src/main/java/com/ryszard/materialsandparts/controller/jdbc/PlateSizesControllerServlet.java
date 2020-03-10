@@ -73,18 +73,18 @@ public class PlateSizesControllerServlet extends HttpServlet {
     }
 
     private void deletePlateSizes(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String thePlateSize = request.getParameter("plate_sizes_id");
-        plateSizesDbUtil.deletePlatesizes(thePlateSize);
+        int thePlateSize = Integer.parseInt(request.getParameter("plate_sizes_id"));
+        plateSizesDbUtil.deletePlateSizes(String.valueOf(thePlateSize));
         listPlateSizes(request, response);
 
     }
 
     private void updatePlateSizes(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Long plateSizesId = Long.parseLong(request.getParameter("plateSizesId"));
-        Long plateLength = Long.parseLong(request.getParameter("plateLength"));
-        Long plateWidth = Long.parseLong(request.getParameter("plateWidth"));
+        int plateSizesId = Integer.parseInt(request.getParameter("plateSizesId"));
+        int plateLength = Integer.parseInt(request.getParameter("plateLength"));
+        int plateWidth = Integer.parseInt(request.getParameter("plateWidth"));
         PlateSizes thePlateSizes = new PlateSizes(plateSizesId, plateLength, plateWidth);
-        plateSizesDbUtil.updatePlatesizes(thePlateSizes);
+        plateSizesDbUtil.updatePlateSizes(thePlateSizes);
         listPlateSizes(request, response);
     }
 
@@ -97,12 +97,12 @@ public class PlateSizesControllerServlet extends HttpServlet {
     }
 
     private void addPlateSizes(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Long plateLength = Long.valueOf(request.getParameter("plateLength"));
-        Long plateWidth = Long.valueOf(request.getParameter("plateWidth"));
+        int plateLength = Integer.valueOf(request.getParameter("plateLength"));
+        int plateWidth = Integer.parseInt(request.getParameter("plateWidth"));
 
 
         PlateSizes thePlateSizes = new PlateSizes(plateLength, plateWidth);
-        plateSizesDbUtil.addPlatesizes(thePlateSizes);
+        plateSizesDbUtil.addPlateSizes(thePlateSizes);
         listPlateSizes(request, response);
     }
 

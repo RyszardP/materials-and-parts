@@ -73,21 +73,21 @@ public class PlateControllerServlet extends HttpServlet {
     }
 
     private void deletePlate(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String thePlate = request.getParameter("plate_id");
-        plateDbUtil.deletePlate(thePlate);
+        String thePlateId = request.getParameter("plateId");
+        plateDbUtil.deletePlate(thePlateId);
         listPlates(request, response);
 
     }
     private void updatePlate(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Long plateId = Long.parseLong(request.getParameter("plateId"));
-        String plateType = request.getParameter("plateType");
-        String plateManufacturer = request.getParameter("plateManufacturer");
-        String plateThickness = request.getParameter("plateThickness");
-        String plateVCode = request.getParameter("plateVCode");
-        String plateSizes = request.getParameter("plateSizes");
+        int plateId = Integer.parseInt(request.getParameter("plateId"));
+        int plateType = Integer.parseInt(request.getParameter("plateType"));
+        int plateManufacturer = Integer.parseInt(request.getParameter("plateManufacturer"));
+        int plateThickness = Integer.parseInt(request.getParameter("plateThickness"));
+        int plateVCode = Integer.parseInt(request.getParameter("plateVCode"));
+        int plateSizes = Integer.parseInt(request.getParameter("plateSizes"));
         String plateDescription = request.getParameter("plateDescription");
-        String platePrice = request.getParameter("platePrice");
-        String plateCoefficient = request.getParameter("plateCoefficient");
+        Double platePrice = Double.valueOf(request.getParameter("platePrice"));
+        Double plateCoefficient = Double.valueOf(request.getParameter("plateCoefficient"));
 
         Plate thePlate = new Plate(plateId, plateType, plateManufacturer, plateThickness, plateVCode, plateSizes,
                 plateDescription, platePrice, plateCoefficient);
@@ -105,14 +105,14 @@ public class PlateControllerServlet extends HttpServlet {
     }
 
     private void addPlate(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String plateType = request.getParameter("plateType");
-        String plateManufacturer = request.getParameter("plateManufacturer");
-        String plateThickness = request.getParameter("plateThickness");
-        String plateVCode = request.getParameter("plateVCode");
-        String plateSizes = request.getParameter("plateSizes");
+        int plateType = Integer.parseInt(request.getParameter("plateType"));
+        int plateManufacturer = Integer.parseInt(request.getParameter("plateManufacturer"));
+        int plateThickness = Integer.parseInt(request.getParameter("plateThickness"));
+        int plateVCode = Integer.parseInt(request.getParameter("plateVCode"));
+        int plateSizes = Integer.parseInt(request.getParameter("plateSizes"));
         String plateDescription = request.getParameter("plateDescription");
-        String platePrice = request.getParameter("platePrice");
-        String plateCoefficient = request.getParameter("plateCoefficient");
+        Double platePrice = Double.valueOf(request.getParameter("platePrice"));
+        Double plateCoefficient = Double.valueOf(request.getParameter("plateCoefficient"));
 
         Plate thePlate = new Plate(plateType, plateManufacturer, plateThickness, plateVCode, plateSizes,
                 plateDescription, platePrice, plateCoefficient);

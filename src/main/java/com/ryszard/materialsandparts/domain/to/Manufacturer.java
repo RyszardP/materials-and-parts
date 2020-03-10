@@ -4,7 +4,7 @@ import java.util.StringJoiner;
 
 public class Manufacturer {
 
-    private Long manufacturerId;
+    private int manufacturerId;
 
     private String manufacturerTitle;
 
@@ -15,16 +15,16 @@ public class Manufacturer {
         this.manufacturerTitle = manufacturerTitle;
     }
 
-    public Manufacturer(Long manufacturerId, String manufacturerTitle) {
-        this.manufacturerId = manufacturerId;
+    public Manufacturer(int manufacturerId, String manufacturerTitle) {
+
         this.manufacturerTitle = manufacturerTitle;
     }
 
-    public Long getManufacturerId() {
+    public int getManufacturerId() {
         return manufacturerId;
     }
 
-    public void setManufacturerId(Long manufacturerId) {
+    public void setManufacturerId(int manufacturerId) {
         this.manufacturerId = manufacturerId;
     }
 
@@ -43,14 +43,13 @@ public class Manufacturer {
 
         Manufacturer that = (Manufacturer) o;
 
-        if (manufacturerId != null ? !manufacturerId.equals(that.manufacturerId) : that.manufacturerId != null)
-            return false;
+        if (manufacturerId != that.manufacturerId) return false;
         return manufacturerTitle != null ? manufacturerTitle.equals(that.manufacturerTitle) : that.manufacturerTitle == null;
     }
 
     @Override
     public int hashCode() {
-        int result = manufacturerId != null ? manufacturerId.hashCode() : 0;
+        int result = manufacturerId;
         result = 31 * result + (manufacturerTitle != null ? manufacturerTitle.hashCode() : 0);
         return result;
     }

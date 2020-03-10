@@ -4,21 +4,33 @@ import java.util.StringJoiner;
 
 public class Plate {
 
-    private Long plateId;
-    private String plateType;
-    private String plateManufacturer;
-    private String plateThickness;
-    private String plateVCode;
-    private String plateSizes;
+    private int plateId;
+    private int plateType;
+    private int plateManufacturer;
+    private int plateThickness;
+    private int plateVCode;
+    private int plateSizes;
     private String plateDescription;
-    private String platePrice;
-    private String plateCoefficient;
+    private double platePrice;
+    private double plateCoefficient;
 
     public Plate() {
     }
 
-    public Plate(Long plateId, String plateType, String plateManufacturer, String plateThickness, String plateVCode,
-                 String plateSizes, String plateDescription, String platePrice, String plateCoefficient) {
+    public Plate(int plateType, int plateManufacturer, int plateThickness, int plateVCode, int plateSizes,
+                 String plateDescription, double platePrice, double plateCoefficient) {
+        this.plateType = plateType;
+        this.plateManufacturer = plateManufacturer;
+        this.plateThickness = plateThickness;
+        this.plateVCode = plateVCode;
+        this.plateSizes = plateSizes;
+        this.plateDescription = plateDescription;
+        this.platePrice = platePrice;
+        this.plateCoefficient = plateCoefficient;
+    }
+
+    public Plate(int plateId, int plateType, int plateManufacturer, int plateThickness, int plateVCode,
+                 int plateSizes, String plateDescription, double platePrice, double plateCoefficient) {
         this.plateId = plateId;
         this.plateType = plateType;
         this.plateManufacturer = plateManufacturer;
@@ -30,63 +42,51 @@ public class Plate {
         this.plateCoefficient = plateCoefficient;
     }
 
-    public Plate(String plateType, String plateManufacturer, String plateThickness, String plateVCode,
-                 String plateSizes, String plateDescription, String platePrice, String plateCoefficient) {
-        this.plateType = plateType;
-        this.plateManufacturer = plateManufacturer;
-        this.plateThickness = plateThickness;
-        this.plateVCode = plateVCode;
-        this.plateSizes = plateSizes;
-        this.plateDescription = plateDescription;
-        this.platePrice = platePrice;
-        this.plateCoefficient = plateCoefficient;
-    }
-
-    public Long getPlateId() {
+    public int getPlateId() {
         return plateId;
     }
 
-    public void setPlateId(Long plateId) {
+    public void setPlateId(int plateId) {
         this.plateId = plateId;
     }
 
-    public String getPlateType() {
+    public int getPlateType() {
         return plateType;
     }
 
-    public void setPlateType(String plateType) {
+    public void setPlateType(int plateType) {
         this.plateType = plateType;
     }
 
-    public String getPlateManufacturer() {
+    public int getPlateManufacturer() {
         return plateManufacturer;
     }
 
-    public void setPlateManufacturer(String plateManufacturer) {
+    public void setPlateManufacturer(int plateManufacturer) {
         this.plateManufacturer = plateManufacturer;
     }
 
-    public String getPlateThickness() {
+    public int getPlateThickness() {
         return plateThickness;
     }
 
-    public void setPlateThickness(String plateThickness) {
+    public void setPlateThickness(int plateThickness) {
         this.plateThickness = plateThickness;
     }
 
-    public String getPlateVCode() {
+    public int getPlateVCode() {
         return plateVCode;
     }
 
-    public void setPlateVCode(String plateVCode) {
+    public void setPlateVCode(int plateVCode) {
         this.plateVCode = plateVCode;
     }
 
-    public String getPlateSizes() {
+    public int getPlateSizes() {
         return plateSizes;
     }
 
-    public void setPlateSizes(String plateSizes) {
+    public void setPlateSizes(int plateSizes) {
         this.plateSizes = plateSizes;
     }
 
@@ -98,19 +98,19 @@ public class Plate {
         this.plateDescription = plateDescription;
     }
 
-    public String getPlatePrice() {
+    public double getPlatePrice() {
         return platePrice;
     }
 
-    public void setPlatePrice(String platePrice) {
+    public void setPlatePrice(double platePrice) {
         this.platePrice = platePrice;
     }
 
-    public String getPlateCoefficient() {
+    public double getPlateCoefficient() {
         return plateCoefficient;
     }
 
-    public void setPlateCoefficient(String plateCoefficient) {
+    public void setPlateCoefficient(double plateCoefficient) {
         this.plateCoefficient = plateCoefficient;
     }
 
@@ -122,31 +122,32 @@ public class Plate {
 
         Plate plate = (Plate) o;
 
-        if (plateId != null ? !plateId.equals(plate.plateId) : plate.plateId != null) return false;
-        if (plateType != null ? !plateType.equals(plate.plateType) : plate.plateType != null) return false;
-        if (plateManufacturer != null ? !plateManufacturer.equals(plate.plateManufacturer) : plate.plateManufacturer != null)
-            return false;
-        if (plateThickness != null ? !plateThickness.equals(plate.plateThickness) : plate.plateThickness != null)
-            return false;
-        if (plateVCode != null ? !plateVCode.equals(plate.plateVCode) : plate.plateVCode != null) return false;
-        if (plateSizes != null ? !plateSizes.equals(plate.plateSizes) : plate.plateSizes != null) return false;
-        if (plateDescription != null ? !plateDescription.equals(plate.plateDescription) : plate.plateDescription != null)
-            return false;
-        if (platePrice != null ? !platePrice.equals(plate.platePrice) : plate.platePrice != null) return false;
-        return plateCoefficient != null ? plateCoefficient.equals(plate.plateCoefficient) : plate.plateCoefficient == null;
+        if (plateId != plate.plateId) return false;
+        if (plateType != plate.plateType) return false;
+        if (plateManufacturer != plate.plateManufacturer) return false;
+        if (plateThickness != plate.plateThickness) return false;
+        if (plateVCode != plate.plateVCode) return false;
+        if (plateSizes != plate.plateSizes) return false;
+        if (Double.compare(plate.platePrice, platePrice) != 0) return false;
+        if (Double.compare(plate.plateCoefficient, plateCoefficient) != 0) return false;
+        return plateDescription != null ? plateDescription.equals(plate.plateDescription) : plate.plateDescription == null;
     }
 
     @Override
     public int hashCode() {
-        int result = plateId != null ? plateId.hashCode() : 0;
-        result = 31 * result + (plateType != null ? plateType.hashCode() : 0);
-        result = 31 * result + (plateManufacturer != null ? plateManufacturer.hashCode() : 0);
-        result = 31 * result + (plateThickness != null ? plateThickness.hashCode() : 0);
-        result = 31 * result + (plateVCode != null ? plateVCode.hashCode() : 0);
-        result = 31 * result + (plateSizes != null ? plateSizes.hashCode() : 0);
+        int result;
+        long temp;
+        result = plateId;
+        result = 31 * result + plateType;
+        result = 31 * result + plateManufacturer;
+        result = 31 * result + plateThickness;
+        result = 31 * result + plateVCode;
+        result = 31 * result + plateSizes;
         result = 31 * result + (plateDescription != null ? plateDescription.hashCode() : 0);
-        result = 31 * result + (platePrice != null ? platePrice.hashCode() : 0);
-        result = 31 * result + (plateCoefficient != null ? plateCoefficient.hashCode() : 0);
+        temp = Double.doubleToLongBits(platePrice);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(plateCoefficient);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 
@@ -154,11 +155,11 @@ public class Plate {
     public String toString() {
         return new StringJoiner(", ", Plate.class.getSimpleName() + "[", "]")
                 .add("plateId=" + plateId)
-                .add("plateType='" + plateType + "'")
-                .add("plateManufacturer='" + plateManufacturer + "'")
-                .add("plateThickness='" + plateThickness + "'")
-                .add("plateVCode='" + plateVCode + "'")
-                .add("plateSizes='" + plateSizes + "'")
+                .add("plateType=" + plateType)
+                .add("plateManufacturer=" + plateManufacturer)
+                .add("plateThickness=" + plateThickness)
+                .add("plateVCode=" + plateVCode)
+                .add("plateSizes=" + plateSizes)
                 .add("plateDescription='" + plateDescription + "'")
                 .add("platePrice='" + platePrice + "'")
                 .add("plateCoefficient='" + plateCoefficient + "'")

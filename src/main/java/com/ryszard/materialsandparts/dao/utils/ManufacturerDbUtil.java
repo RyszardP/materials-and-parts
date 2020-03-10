@@ -32,7 +32,7 @@ public class ManufacturerDbUtil {
             resultSet = myStatement.executeQuery(sql);
 
             while (resultSet.next()) {
-                Long manufacturerId = resultSet.getLong("manufacturer_id");
+                int manufacturerId = resultSet.getInt("manufacturer_id");
                 String manufacturerTitle = resultSet.getString("manufacturer_title");
                 Manufacturer tempManufacturer = new Manufacturer(manufacturerId, manufacturerTitle);
                 manufacturers.add(tempManufacturer);
@@ -83,14 +83,14 @@ public class ManufacturerDbUtil {
         Connection myConnection = null;
         PreparedStatement myPreparedStatement = null;
         ResultSet myResultSet = null;
-       long manufacturerId;
+       int manufacturerId;
 
         try{
-            manufacturerId = Long.parseLong(theManufacturerId);
+            manufacturerId = Integer.parseInt(theManufacturerId);
             myConnection = dataSource.getConnection();
             String sql = "select * from manufacturer where manufacturer_id=?";
             myPreparedStatement = myConnection.prepareStatement(sql);
-            myPreparedStatement.setLong(1,manufacturerId);
+            myPreparedStatement.setInt(1,manufacturerId);
             myResultSet = myPreparedStatement.executeQuery();
             if(myResultSet.next()){
                 String manufacturerTitle = myResultSet.getString("manufacturer_title");
@@ -106,7 +106,7 @@ public class ManufacturerDbUtil {
         }
     }
 
-    public void updateManufaturer(Manufacturer theManufacturer) throws Exception{
+    public void updateManufacturer(Manufacturer theManufacturer) throws Exception{
         Connection myConnection = null;
         PreparedStatement thePrparedStatement = null;
 
@@ -126,11 +126,11 @@ public class ManufacturerDbUtil {
         Connection myConnection = null;
         PreparedStatement myPreparedStatement = null;
         try {
-            Long manufacturerId = Long.parseLong(theManufacturerId);
+            int manufacturerId = Integer.parseInt(theManufacturerId);
             myConnection = dataSource.getConnection();
             String sql = "delete from manufacturer where manufacturer_id = ?";
             myPreparedStatement = myConnection.prepareStatement(sql);
-            myPreparedStatement.setLong(1, Long.parseLong(theManufacturerId));
+            myPreparedStatement.setInt(1, manufacturerId);
             myPreparedStatement.execute();
         }
         finally {

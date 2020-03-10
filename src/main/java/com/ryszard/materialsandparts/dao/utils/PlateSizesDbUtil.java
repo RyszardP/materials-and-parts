@@ -31,9 +31,9 @@ public class PlateSizesDbUtil {
             myResultSet = myStatement.executeQuery(sql);
             while (myResultSet.next()) {
 
-                long plateSizeId = myResultSet.getInt("plate_size_id");
-                long plateLength = myResultSet.getInt("plate_length");
-                long plateWidth = myResultSet.getInt("plate_width");
+                int plateSizeId = myResultSet.getInt("plate_size_id");
+                int plateLength = myResultSet.getInt("plate_length");
+                int plateWidth = myResultSet.getInt("plate_width");
 
                 PlateSizes tempPlateSizes = new PlateSizes(plateSizeId, plateLength, plateWidth);
                 plateSizes.add(tempPlateSizes);
@@ -61,7 +61,7 @@ public class PlateSizesDbUtil {
         }
     }
 
-    public void addPlatesizes(PlateSizes thePlateSizes) throws Exception {
+    public void addPlateSizes(PlateSizes thePlateSizes) throws Exception {
         Connection myConnection = null;
         PreparedStatement myStatement = null;
 
@@ -85,18 +85,18 @@ public class PlateSizesDbUtil {
         Connection myConnection = null;
         PreparedStatement myPreparedStatement = null;
         ResultSet myResultSet = null;
-        long plateSizesId;
+        int plateSizesId;
 
         try {
-            plateSizesId = Long.parseLong(thePlateSizesId);
+            plateSizesId = Integer.parseInt(thePlateSizesId);
             myConnection = dataSource.getConnection();
             String sql = "select * from plate_sizes where plate_sizes_id=?";
             myPreparedStatement = myConnection.prepareStatement(sql);
-            myPreparedStatement.setLong(1, plateSizesId);
+            myPreparedStatement.setInt(1, plateSizesId);
             myResultSet = myPreparedStatement.executeQuery();
             if (myResultSet.next()) {
-                Long plateLength = Long.valueOf(myResultSet.getString("plate_length"));
-                Long plateWidth = Long.valueOf(myResultSet.getString("plate_width"));
+                int plateLength = Integer.parseInt(myResultSet.getString("plate_length"));
+                int plateWidth = Integer.parseInt(myResultSet.getString("plate-width"));
 
                 thePlateSizes = new PlateSizes(plateSizesId, plateLength, plateWidth);
             } else {
@@ -108,7 +108,7 @@ public class PlateSizesDbUtil {
         }
     }
 
-    public void updatePlatesizes(PlateSizes thePlateSizes) throws Exception {
+    public void updatePlateSizes(PlateSizes thePlateSizes) throws Exception {
         Connection myConnection = null;
         PreparedStatement myStatement = null;
         try {
@@ -125,15 +125,15 @@ public class PlateSizesDbUtil {
         }
     }
 
-    public void deletePlatesizes(String thePlateSizesId) throws Exception {
+    public void deletePlateSizes(String thePlateSizesId) throws Exception {
         Connection myConnection = null;
         PreparedStatement myStatement = null;
         try {
-            int studentId = Integer.parseInt(thePlateSizesId);
+            int plateId = Integer.parseInt(thePlateSizesId);
             myConnection = dataSource.getConnection();
             String sql = "delete from plate_sizes where plate_sizes_id=?";
             myStatement = myConnection.prepareStatement(sql);
-            myStatement.setInt(1, studentId);
+            myStatement.setInt(1, plateId);
             myStatement.execute();
         } finally {
             close(myConnection, myStatement, null);

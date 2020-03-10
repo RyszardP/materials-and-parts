@@ -44,7 +44,7 @@ public class ManufacturerControllerServlet extends HttpServlet {
                     listManufacturer(request, response);
                     break;
                 case "ADD":
-                    addManufaturer(request, response);
+                    addManufacturer(request, response);
                     break;
                 case "LOAD":
                     loadManufacturer(request, response);
@@ -70,10 +70,10 @@ public class ManufacturerControllerServlet extends HttpServlet {
     }
 
     private void updateManufacturer(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Long manufacturerId = Long.parseLong(request.getParameter("manufacturerId"));
+        int manufacturerId = Integer.parseInt(request.getParameter("manufacturerId"));
         String manufacturerTitle = request.getParameter("ManufacturerTitle");
         Manufacturer theManufacturer = new Manufacturer(manufacturerId, manufacturerTitle);
-        manufacturerDbUtil.updateManufaturer(theManufacturer);
+        manufacturerDbUtil.updateManufacturer(theManufacturer);
         listManufacturer(request, response);
     }
 
@@ -85,7 +85,7 @@ public class ManufacturerControllerServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void addManufaturer(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    private void addManufacturer(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String manufacturerTitle = request.getParameter("manufacturerTitle");
         Manufacturer theManufacturer = new Manufacturer(manufacturerTitle);
         manufacturerDbUtil.addManufacturer(theManufacturer);
@@ -95,7 +95,7 @@ public class ManufacturerControllerServlet extends HttpServlet {
     private void listManufacturer(HttpServletRequest request, HttpServletResponse response) throws Exception {
         List<Manufacturer> manufacturers = manufacturerDbUtil.getManufacturers();
         request.setAttribute("MANUFACTURER_LIST", manufacturers);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/list-manufacturer.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/list-manufacturer.jsp");
         dispatcher.forward(request, response);
     }
 }

@@ -4,68 +4,48 @@ import java.util.StringJoiner;
 
 public class PlateSizes {
 
-    private Long plateSizeId;
+    private int plateSizeId;
 
-    private Long plateLength;
+    private int plateLength;
 
-    private Long plateWidth;
+    private int plateWidth;
 
     public PlateSizes() {
     }
 
-    public PlateSizes(Long plateSizeId, Long plateLength, Long plateWidth) {
+    public PlateSizes(int plateLength, int plateWidth) {
+        this.plateLength = plateLength;
+        this.plateWidth = plateWidth;
+    }
+
+    public PlateSizes(int plateSizeId, int plateLength, int plateWidth) {
         this.plateSizeId = plateSizeId;
         this.plateLength = plateLength;
         this.plateWidth = plateWidth;
     }
 
-    public PlateSizes(Long plateLength, Long plateWidth) {
-        this.plateLength = plateLength;
-        this.plateWidth = plateWidth;
-    }
-
-    public Long getPlateSizeId() {
+    public int getPlateSizeId() {
         return plateSizeId;
     }
 
-    public void setPlateSizeId(Long plateSizeId) {
+    public void setPlateSizeId(int plateSizeId) {
         this.plateSizeId = plateSizeId;
     }
 
-    public Long getPlateLength() {
+    public int getPlateLength() {
         return plateLength;
     }
 
-    public void setPlateLength(Long plateLength) {
+    public void setPlateLength(int plateLength) {
         this.plateLength = plateLength;
     }
 
-    public Long getPlateWidth() {
+    public int getPlateWidth() {
         return plateWidth;
     }
 
-    public void setPlateWidth(Long plateWidth) {
+    public void setPlateWidth(int plateWidth) {
         this.plateWidth = plateWidth;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PlateSizes)) return false;
-
-        PlateSizes that = (PlateSizes) o;
-
-        if (plateSizeId != null ? !plateSizeId.equals(that.plateSizeId) : that.plateSizeId != null) return false;
-        if (plateLength != null ? !plateLength.equals(that.plateLength) : that.plateLength != null) return false;
-        return plateWidth != null ? plateWidth.equals(that.plateWidth) : that.plateWidth == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = plateSizeId != null ? plateSizeId.hashCode() : 0;
-        result = 31 * result + (plateLength != null ? plateLength.hashCode() : 0);
-        result = 31 * result + (plateWidth != null ? plateWidth.hashCode() : 0);
-        return result;
     }
 
     @Override

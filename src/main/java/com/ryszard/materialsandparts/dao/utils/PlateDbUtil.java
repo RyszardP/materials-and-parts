@@ -36,17 +36,16 @@ public class PlateDbUtil {
             myRs = myStmt.executeQuery(sql);
 
             while (myRs.next()) {
-
                 // retrieve data from result set row
-                Long plateId = myRs.getLong("plate_id");
-                String plateType = myRs.getString("plate_type");
-                String plateManufacturer = myRs.getString("plate_manufacturer");
-                String plateThickness = myRs.getString("plate_thickness");
-                String plateVCode = myRs.getString("plate_v_code");
-                String plateSize = myRs.getString("plate_sizes");
+                int plateId = myRs.getInt("plate_id");
+                int plateType = myRs.getInt("plate_type");
+                int plateManufacturer = myRs.getInt("plate_manufacturer");
+                int plateThickness = myRs.getInt("plate_thickness");
+                int plateVCode = myRs.getInt("plate_v_code");
+                int plateSize = myRs.getInt("plate_sizes");
                 String plateDescription = myRs.getString("plate_description");
-                String platePrice = myRs.getString("plate_price");
-                String plateCoefficient = myRs.getString("plate_coefficient");
+                double platePrice = myRs.getDouble("plate_price");
+                double plateCoefficient = myRs.getDouble("plate_coefficient");
 
                 // create new  plate object
                 Plate tempPlate = new Plate(plateId, plateType, plateManufacturer, plateThickness, plateVCode,
@@ -55,18 +54,17 @@ public class PlateDbUtil {
                 // add it to the list of plates
                 plates.add(tempPlate);
             }
-
             return plates;
         } finally {
             close(myConn, myStmt, myRs);
         }
     }
 
-    private void close(Connection myConnection, Statement myStatement, ResultSet myResultset) {
+    private void close(Connection myConnection, Statement myStatement, ResultSet myResultSet) {
 
         try {
-            if (myResultset != null) {
-                myResultset.close();
+            if (myResultSet != null) {
+                myResultSet.close();
             }
 
             if (myStatement != null) {
@@ -87,23 +85,20 @@ public class PlateDbUtil {
 
         try {
             myConnection = dataSource.getConnection();
-
             String sql = "insert into plate" +
                     "(plate_type, plate_manufacturer, plate_thickness, plate_v_code, plate_sizes, plate_description, " +
                     "plate_price, plate_coefficient) " +
-                    "values(?, ?, ?, ?, ?, ?, ?, ?)";
+                    "values (?, ?, ?, ?, ?, ?, ?, ?)";
             myStatement = myConnection.prepareStatement(sql);
-
-            myStatement.setString(1, thePlate.getPlateType());
-            myStatement.setString(2, thePlate.getPlateManufacturer());
-            myStatement.setString(3, thePlate.getPlateThickness());
-            myStatement.setString(4, thePlate.getPlateVCode());
-            myStatement.setString(5, thePlate.getPlateSizes());
+            myStatement.setInt(1, thePlate.getPlateType());
+            myStatement.setInt(2, thePlate.getPlateManufacturer());
+            myStatement.setInt(3, thePlate.getPlateThickness());
+            myStatement.setInt(4, thePlate.getPlateVCode());
+            myStatement.setInt(5, thePlate.getPlateSizes());
             myStatement.setString(6, thePlate.getPlateDescription());
-            myStatement.setString(7, thePlate.getPlatePrice());
-            myStatement.setString(8, thePlate.getPlateCoefficient());
-
-
+            myStatement.setDouble(7, thePlate.getPlatePrice());
+            myStatement.setDouble(8, thePlate.getPlateCoefficient());
+            myStatement.execute();
         } finally {
             close(myConnection, myStatement, null);
         }
@@ -114,27 +109,27 @@ public class PlateDbUtil {
         Connection myConnection = null;
         PreparedStatement myStatement = null;
         ResultSet myResultSet = null;
-        long plateId;
+        int plateId;
 
         try {
-            plateId = Long.parseLong(thePlateId);
+            plateId = Integer.parseInt(thePlateId);
             myConnection = dataSource.getConnection();
 
             String sql = "select * from plate where plate_id = ?";
 
             myStatement = myConnection.prepareStatement(sql);
-            myStatement.setLong(1, plateId);
+            myStatement.setInt(1, plateId);
             myResultSet = myStatement.executeQuery();
 
             if (myResultSet.next()) {
-                String plateType = myResultSet.getString("plate_type");
-                String plateManufacturer = myResultSet.getString("plate_manufacturer");
-                String plateThickness = myResultSet.getString("plate_thickness");
-                String plateVCode = myResultSet.getString("plate_v_code");
-                String plateSizes = myResultSet.getString("plate_sizes");
+                int plateType = myResultSet.getInt("plate_type");
+                int plateManufacturer = myResultSet.getInt("plate_manufacturer");
+                int plateThickness = myResultSet.getInt("plate_thickness");
+                int plateVCode = myResultSet.getInt("plate_v_code");
+                int plateSizes = myResultSet.getInt("plate_sizes");
                 String plateDescription = myResultSet.getString("plate_description");
-                String platePrice = myResultSet.getString("plate_price");
-                String plateCoefficient = myResultSet.getString("plate_coefficient");
+                double platePrice = myResultSet.getDouble("plate_price");
+                double plateCoefficient = myResultSet.getDouble("plate_coefficient");
 
                 thePlate = new Plate(plateId, plateType, plateManufacturer, plateThickness, plateVCode, plateSizes,
                         plateDescription, platePrice, plateCoefficient);
@@ -161,14 +156,15 @@ public class PlateDbUtil {
 
             myPreparedStatement = connection.prepareStatement(sql);
 
-            myPreparedStatement.setString(1, thePlate.getPlateType());
-            myPreparedStatement.setString(2, thePlate.getPlateManufacturer());
-            myPreparedStatement.setString(3, thePlate.getPlateThickness());
-            myPreparedStatement.setString(4, thePlate.getPlateVCode());
-            myPreparedStatement.setString(5, thePlate.getPlateSizes());
+            myPreparedStatement.setInt(1, thePlate.getPlateType());
+            myPreparedStatement.setInt(2, thePlate.getPlateManufacturer());
+            myPreparedStatement.setInt(3, thePlate.getPlateThickness());
+            myPreparedStatement.setInt(4, thePlate.getPlateVCode());
+            myPreparedStatement.setInt(5, thePlate.getPlateSizes());
             myPreparedStatement.setString(6, thePlate.getPlateDescription());
-            myPreparedStatement.setString(7, thePlate.getPlatePrice());
-            myPreparedStatement.setString(8, thePlate.getPlateCoefficient());
+            myPreparedStatement.setDouble(7, thePlate.getPlatePrice());
+            myPreparedStatement.setDouble(8, thePlate.getPlateCoefficient());
+            myPreparedStatement.setInt(9,thePlate.getPlateId());
             myPreparedStatement.execute();
         } finally {
             close(connection, myPreparedStatement, null);
@@ -181,12 +177,12 @@ public class PlateDbUtil {
         PreparedStatement myPreparedStatement = null;
 
         try {
-            long plateId = Long.parseLong(thePlateId);
+            int plateId = Integer.parseInt(thePlateId);
             myConnection = dataSource.getConnection();
 
             String sql = "delete from plate where plate_id = ?";
             myPreparedStatement = myConnection.prepareStatement(sql);
-            myPreparedStatement.setLong(1, plateId);
+            myPreparedStatement.setInt(1, plateId);
             myPreparedStatement.execute();
         } finally {
             close(myConnection, myPreparedStatement, null);

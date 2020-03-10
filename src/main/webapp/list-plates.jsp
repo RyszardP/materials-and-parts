@@ -35,6 +35,8 @@
                 <th>Plate description</th>
                 <th>Plate price</th>
                 <th>Plate coefficient</th>
+                <th>Update</th>
+                <th>Delete</th>
             </tr>
 
             <c:forEach var="tempPlate" items="${PLATE_LIST}">
@@ -61,8 +63,8 @@
                     <td> ${tempPlate.platePrice} </td>
                     <td> ${tempPlate.plateCoefficient} </td>
                     <td>
-                        <a href="${tempLink}">Update</a>
-                        |
+                        <a href="${tempLink}">Update</a></td>
+                    <td>
                         <a href="${deleteLink}"
                            onclick="if (!(confirm('Are you sure you want to delete this plate?'))) return false">
                             Delete</a>
